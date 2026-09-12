@@ -253,19 +253,32 @@ const isActive = (item) => item.active.some((pattern) => route().current(pattern
 
             <!-- User pill -->
             <div class="px-3 py-3 border-t border-border-subtle shrink-0">
-                <Link
-                    :href="route('settings.account.index')"
-                    data-testid="user-menu"
-                    class="flex items-center gap-2.5 w-full px-2 py-1.5 rounded-md hover:bg-surface-overlay transition-colors ds-focus-ring"
-                >
-                    <span class="h-7 w-7 rounded-full bg-surface-overlay grid place-items-center text-[11px] font-semibold text-text-primary shrink-0">
-                        {{ (user?.name || '?').charAt(0).toUpperCase() }}
-                    </span>
-                    <div class="min-w-0 flex-1 text-left">
-                        <p class="text-[13px] font-medium text-text-primary truncate">{{ user?.name }}</p>
-                        <p class="text-[11px] text-text-tertiary truncate">{{ user?.email }}</p>
-                    </div>
-                </Link>
+                <div class="flex items-center gap-2.5 w-full px-2 py-1.5 rounded-md hover:bg-surface-overlay transition-colors">
+                    <Link
+                        :href="route('settings.account.index')"
+                        data-testid="user-menu"
+                        class="flex items-center gap-2.5 flex-1 min-w-0"
+                    >
+                        <span class="h-7 w-7 rounded-full bg-surface-overlay grid place-items-center text-[11px] font-semibold text-text-primary shrink-0">
+                            {{ (user?.name || '?').charAt(0).toUpperCase() }}
+                        </span>
+                        <div class="min-w-0 flex-1 text-left">
+                            <p class="text-[13px] font-medium text-text-primary truncate">{{ user?.name }}</p>
+                            <p class="text-[11px] text-text-tertiary truncate">{{ user?.email }}</p>
+                        </div>
+                    </Link>
+                    <Link
+                        :href="route('logout')"
+                        method="post"
+                        as="button"
+                        class="shrink-0 p-1.5 text-text-tertiary hover:text-red-400 hover:bg-red-500/10 rounded-md transition-colors"
+                        title="Cerrar sesión"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                    </Link>
+                </div>
             </div>
         </aside>
 
