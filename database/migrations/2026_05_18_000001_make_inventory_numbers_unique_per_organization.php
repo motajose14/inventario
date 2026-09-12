@@ -18,7 +18,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropUnique(['sku']);
+            if (Schema::hasIndex('products', 'products_sku_unique')) {
+                $table->dropUnique(['sku']);
+            }
             $table->unique(['organization_id', 'sku']);
         });
 
